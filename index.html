@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Marcel au Comptoir</title>
+<meta name="description" content="Marcel au Comptoir, bistrot méditerranéen au 17 avenue Notre-Dame à Nice : tapas, planches à partager et plat du jour.">
+<style>
+*{box-sizing:border-box}body{margin:0}img{max-width:100%}
+
+@font-face{font-family:'Big Shoulders Display';font-style:normal;font-weight:800;font-display:swap;src:url(assets/fonts/big-shoulders-display-latin-800-normal.woff2) format('woff2')}
+@font-face{font-family:'Caprasimo';font-style:normal;font-weight:400;font-display:swap;src:url(assets/fonts/caprasimo-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:'Instrument Sans';font-style:normal;font-weight:400;font-display:swap;src:url(assets/fonts/instrument-sans-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:'Instrument Sans';font-style:normal;font-weight:500;font-display:swap;src:url(assets/fonts/instrument-sans-latin-500-normal.woff2) format('woff2')}
+@font-face{font-family:'Instrument Sans';font-style:normal;font-weight:600;font-display:swap;src:url(assets/fonts/instrument-sans-latin-600-normal.woff2) format('woff2')}
+/* Layout: sticky text nav over a full-bleed terrace hero, then three bands — story, printed-style menu, map + hours */
+:root {
+  --ink: #14262E;
+  --ink-soft: #3B4A50;
+  --muted: #5E6A6C;
+  --azure: #1E4E62;
+  --sky: #E9DDC4;
+  --line: #D8C9A8;
+  --sun: #D9B77E;
+  --paper: #F6F1E7;
+  --deep: #1E4E62;
+  --brass: #9A6F2C;
+  --display: 'Caprasimo', Georgia, serif;
+  --brand: 'Big Shoulders Display', 'Arial Narrow', sans-serif;
+  --body: 'Instrument Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  color-scheme: light;
+}
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 16px; line-height: 1.5; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--paper); }
+a { color: inherit; text-decoration: none; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--azure); outline-offset: 3px; }
+h1, h2, h3 { text-wrap: balance; }
+
+.wrap { max-width: 1240px; margin: 0 auto; padding-left: max(24px, env(safe-area-inset-left, 0px)); padding-right: max(24px, env(safe-area-inset-right, 0px)); }
+
+/* Header */
+.site-header { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: rgba(246,241,231,0.95); border-bottom: 1px solid #E3D6BB; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+.nav { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 32px; padding-block: 10px; }
+.brand { font-family: var(--brand); font-weight: 800; font-size: 24px; text-transform: uppercase; letter-spacing: 0.02em; color: var(--ink); }
+.brand span { color: var(--brass); }
+.nav-links { display: flex; flex-wrap: wrap; align-items: center; gap: 0 32px; font-weight: 500; }
+.nav-links a { padding: 12px 0; border-bottom: 2px solid transparent; transition: color .15s, border-color .15s; }
+.nav-links a:hover, .nav-links a.active { color: var(--azure); border-bottom-color: var(--azure); }
+.lang { display: flex; align-items: center; gap: 2px; font-size: 14px; font-weight: 600; }
+.lang button { min-width: 44px; min-height: 44px; border: 0; background: transparent; font: inherit; color: var(--muted); cursor: pointer; }
+.lang button[aria-pressed="true"] { color: var(--azure); text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 2px; }
+.lang .sep { color: #A89B7E; }
+
+/* Hero */
+.hero { position: relative; min-height: min(760px, 88vh); display: grid; place-items: center; overflow: hidden; background: var(--deep); }
+.hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 40%; }
+.hero::after { content: ""; position: absolute; inset: 0; background: rgba(16,38,48,0.5); }
+.hero-inner { position: relative; z-index: 1; text-align: center; padding-block: 120px; display: flex; flex-direction: column; align-items: center; gap: 20px; }
+.hero-city { margin: 0; font-size: 15px; font-weight: 600; letter-spacing: 0.32em; text-transform: uppercase; color: var(--sun); }
+.hero h1 { margin: 0; font-family: var(--brand); font-weight: 800; text-transform: uppercase; font-size: clamp(68px, 13vw, 184px); line-height: 0.86; letter-spacing: 0.01em; color: #F6F1E7; }
+
+/* Sections */
+section[id] { scroll-margin-top: 72px; }
+.band { padding-block: clamp(72px, 10vw, 120px); }
+.band.sky { background: var(--sky); }
+.eyebrow { margin: 0; font-size: 14px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--azure); }
+.h2 { margin: 0; font-family: var(--display); font-weight: 400; font-size: clamp(34px, 4.2vw, 56px); line-height: 1.05; letter-spacing: -0.01em; }
+.lede { margin: 0; font-size: 18px; line-height: 1.65; color: var(--ink-soft); max-width: 60ch; }
+
+/* Text sits on the 1240px grid; the photo runs to the right edge of the screen */
+.about { display: flex; flex-wrap: wrap; align-items: stretch; }
+.about-text { flex: 1 1 480px; min-width: 0; padding-block: 48px; padding-right: clamp(24px, 5vw, 72px); padding-left: max(24px, env(safe-area-inset-left, 0px), calc((100% - 1240px) / 2 + 24px)); display: flex; flex-direction: column; justify-content: center; gap: 24px; }
+.about-photo { flex: 1 1 480px; min-width: 0; width: 100%; max-width: 100%; min-height: clamp(320px, 45vw, 640px); object-fit: cover; display: block; }
+.mosaic { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-template-rows: repeat(2, clamp(160px, 20vw, 280px)); gap: 4px; background: var(--paper); }
+.mosaic img { width: 100%; height: 100%; max-width: 100%; object-fit: cover; display: block; }
+.mosaic .m-big { grid-column: span 2; grid-row: span 2; }
+.features { margin-top: 72px; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
+.feature { border-top: 2px solid var(--ink); padding-top: 20px; display: flex; flex-direction: column; gap: 8px; }
+.feature h3 { margin: 0; font-family: var(--display); font-weight: 400; font-size: 22px; }
+.feature p { margin: 0; color: var(--ink-soft); line-height: 1.55; }
+
+/* Menu */
+.menu-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px 48px; margin-bottom: 48px; }
+.menu-head > div { display: flex; flex-direction: column; gap: 16px; }
+.menu-head p.note { margin: 0; max-width: 420px; font-size: 17px; line-height: 1.6; color: var(--ink-soft); }
+.menu-sheet { background: var(--paper); padding: 12px; box-shadow: 0 1px 0 var(--line); }
+.menu-frame { border: 1px solid var(--ink); outline: 1px solid var(--ink); outline-offset: -7px; padding: clamp(32px, 5vw, 72px) clamp(20px, 5vw, 72px); display: flex; flex-direction: column; gap: 56px; }
+.menu-title { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.menu-title p { margin: 0; font-family: var(--brand); font-weight: 800; text-transform: uppercase; font-size: clamp(36px, 4.5vw, 56px); letter-spacing: 0.02em; line-height: 1; }
+.menu-title span { width: 64px; height: 2px; background: var(--azure); }
+.menu-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 56px 80px; }
+.cat { display: flex; flex-direction: column; gap: 22px; min-width: 0; }
+.cat-title { display: flex; align-items: center; gap: 16px; }
+.cat-title::before, .cat-title::after { content: ""; flex: 1 1 auto; height: 1px; background: var(--line); }
+.cat-title h3 { margin: 0; font-family: var(--display); font-weight: 400; font-size: 24px; text-align: center; }
+.dish { display: flex; flex-direction: column; gap: 4px; }
+.dish-line { display: flex; align-items: baseline; gap: 12px; font-weight: 600; font-size: 17px; }
+.dish-line .dots { flex: 1 1 auto; border-bottom: 1px dotted #A89B7E; transform: translateY(-4px); }
+.dish-line .price { color: var(--azure); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.dish .desc { font-size: 15px; font-style: italic; color: var(--muted); }
+
+/* Find us */
+.find { display: flex; flex-wrap: wrap; gap: 32px; margin-top: 48px; }
+.map { flex: 999 1 520px; min-width: 0; min-height: 440px; background: var(--deep); position: relative; overflow: hidden; }
+.map svg.streets { position: absolute; inset: 0; width: 100%; height: 100%; }
+.pin { position: absolute; left: 50%; top: 46%; transform: translate(-50%, -100%); display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.pin-label { background: #F6F1E7; color: var(--ink); font-weight: 700; font-size: 14px; padding: 8px 14px; white-space: nowrap; }
+.directions { position: absolute; left: 24px; bottom: 24px; display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 0 22px; background: #F6F1E7; color: var(--ink); font-weight: 600; font-size: 15px; }
+.directions:hover { color: var(--azure); }
+.info { flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 36px; }
+.info-block { display: flex; flex-direction: column; gap: 10px; }
+.info h3 { margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+.address { margin: 0; font-family: var(--display); font-weight: 400; font-size: 26px; line-height: 1.25; }
+.info p.tram { margin: 0; color: var(--ink-soft); }
+.hours { display: flex; flex-direction: column; gap: 12px; margin: 4px 0 0; padding: 0; list-style: none; }
+.hours li { display: flex; justify-content: space-between; gap: 16px; padding-bottom: 12px; border-bottom: 1px solid #E3D6BB; font-size: 17px; }
+.hours li span:last-child { font-weight: 600; font-variant-numeric: tabular-nums; }
+
+footer { background: var(--ink); color: #F6F1E7; padding-block: 48px; }
+.foot { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px 32px; }
+.foot .brand { color: #F6F1E7; }
+.foot .brand span { color: var(--sun); }
+.foot small { font-size: 15px; color: #D9CDB4; }
+
+@media (max-width: 640px) {
+  /* Header: brand + FR/EN on one row, the three sections spread evenly on a second row */
+  .nav { gap: 0; padding-block: 4px 0; }
+  .nav-links { display: contents; }
+  .brand { flex: 1 1 calc(100% - 110px); font-size: 21px; }
+  .lang { order: 1; }
+  .nav-links > a { order: 2; flex: 1 1 0; text-align: center; font-size: 15px; padding: 10px 0 12px; white-space: nowrap; }
+  section[id] { scroll-margin-top: 104px; }
+  .hero { min-height: 0; }
+  .hero-inner { padding-block: 112px 120px; gap: 14px; }
+  .hero h1 { font-size: clamp(60px, 22vw, 104px); }
+  .band { padding-block: 64px; }
+  .h2 { font-size: 34px; }
+  .lede { font-size: 17px; }
+  .features { margin-top: 48px; gap: 28px; }
+  .menu-head { margin-bottom: 32px; }
+  .menu-sheet { padding: 6px; }
+  .menu-frame { outline-offset: -5px; padding: 36px 20px 40px; gap: 40px; }
+  .menu-cols { gap: 40px; }
+  .dish-line { font-size: 16px; }
+  .find { margin-top: 32px; gap: 32px; }
+  .map { flex-basis: 100%; min-height: 300px; margin-left: calc(-1 * max(24px, env(safe-area-inset-left, 0px))); margin-right: calc(-1 * max(24px, env(safe-area-inset-right, 0px))); }
+  .directions { left: max(24px, env(safe-area-inset-left, 0px)); bottom: 20px; }
+  .address { font-size: 24px; }
+  .hours li { font-size: 16px; }
+  .foot { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .about-text { padding-block: 0 40px; padding-right: max(24px, env(safe-area-inset-right, 0px)); }
+  .about-photo { min-height: 0; aspect-ratio: 4 / 3; }
+  .mosaic { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: 240px repeat(2, 150px); }
+  .mosaic .m-big { grid-row: auto; }
+}
+</style>
+</head>
+<body>
+
+
+<header class="site-header">
+  <nav class="wrap nav" aria-label="Navigation principale">
+    <a class="brand" href="#accueil">Marcel <span>au Comptoir</span></a>
+    <div class="nav-links">
+      <a href="#presentation" data-i18n="navAbout">Le restaurant</a>
+      <a href="#menu" data-i18n="navMenu">La carte</a>
+      <a href="#acces" data-i18n="navFind">Nous trouver</a>
+      <div class="lang" role="group" aria-label="Langue">
+        <button type="button" id="lang-fr" aria-pressed="true">FR</button>
+        <span class="sep" aria-hidden="true">/</span>
+        <button type="button" id="lang-en" aria-pressed="false">EN</button>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section id="accueil" class="hero">
+    <img src="assets/img/terrasse.jpg" alt="" data-i18n-alt="altTerrace">
+    <div class="wrap hero-inner">
+      <p class="hero-city">Nice</p>
+      <h1>Marcel<br>au Comptoir</h1>
+    </div>
+  </section>
+
+  <section id="presentation" class="band">
+      <div class="about">
+        <div class="about-text">
+          <p class="eyebrow" data-i18n="aboutEyebrow">Le restaurant</p>
+          <h2 class="h2" data-i18n="aboutTitle">Un bistrot méditerranéen au cœur de Nice</h2>
+          <p class="lede" data-i18n="aboutP1">À deux pas de la basilique Notre-Dame, Marcel au Comptoir vous accueille pour une cuisine bistronomique et méditerranéenne : tapas à partager, belles planches et plat du jour.</p>
+          <p class="lede" data-i18n="aboutP2">Des produits frais livrés chaque jour, une ambiance conviviale, et une table pour l’apéro, le déjeuner ou l’afterwork entre amis.</p>
+        </div>
+        <img class="about-photo" src="assets/img/salle.jpg" alt="La salle du restaurant, ses suspensions et ses grandes vitres sur la rue" data-i18n-alt="altRoom">
+      </div>
+    <div class="wrap">
+      <div class="features">
+        <div class="feature"><h3 data-i18n="f1t">La salle verrière</h3><p data-i18n="f1p">Une salle lumineuse sous verrière, face à la cuisine.</p></div>
+        <div class="feature"><h3 data-i18n="f2t">L’olivier centenaire</h3><p data-i18n="f2p">Une table autour de notre olivier, au cœur du lieu.</p></div>
+        <div class="feature"><h3 data-i18n="f3t">La terrasse</h3><p data-i18n="f3p">Ouverte presque toute l’année, soleil niçois oblige.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mosaic" aria-label="En images">
+    <img class="m-big" src="assets/img/terrasse.jpg" alt="La terrasse" data-i18n-alt="altTerrace">
+    <img src="assets/img/tapas.jpg" alt="Assiettes à partager" data-i18n-alt="altTapas">
+    <img src="assets/img/planche.jpg" alt="Planche de charcuterie et fromages" data-i18n-alt="altBoard">
+    <img src="assets/img/plat.jpg" alt="Plat de poisson" data-i18n-alt="altFish">
+    <img src="assets/img/dessert.jpg" alt="Panna cotta aux fraises" data-i18n-alt="altDessert">
+  </section>
+
+  <section id="menu" class="band sky">
+    <div class="wrap">
+      <div class="menu-head">
+        <div>
+          <p class="eyebrow" data-i18n="menuEyebrow">La carte</p>
+          <h2 class="h2" data-i18n="menuTitle">À partager, ou pas</h2>
+        </div>
+        <p class="note" data-i18n="menuIntro">Produits frais livrés chaque jour : la carte évolue au fil du marché.</p>
+      </div>
+      <div class="menu-sheet">
+        <div class="menu-frame">
+          <div class="menu-title"><p>Marcel au Comptoir</p><span aria-hidden="true"></span></div>
+          <div class="menu-cols">
+            <div class="cat"><div class="cat-title"><h3 data-i18n="catTapas">Tapas</h3></div><div class="dish"><div class="dish-line"><span data-i18n="dish">[Nom du plat]</span><span class="dots" aria-hidden="true"></span><span class="price" data-i18n="price">[Prix] €</span></div><span class="desc" data-i18n="desc">[Courte description]</span></div><div class="dish"><div class="dish-line"><span data-i18n="dish">[Nom du plat]</span><span class="dots" aria-hidden="true"></span><span class="price" data-i18n="price">[Prix] €</span></div><span class="desc" data-i18n="desc">[Courte description]</span></div><div class="dish"><div class="dish-line"><span data-i18n="dish">[Nom du plat]</span><span class="dots" aria-hidden="true"></span><span class="price" data-i18n="price">[Prix] €</span></div><span class="desc" data-i18n="desc">[Courte description]</span></div></div><div class="cat"><div class="cat-title"><h3 data-i18n="catBoards">Planches à partager</h3></div><div class="dish"><div class="dish-line"><span data-i18n="dish">[Nom du plat]</span><span class="dots" aria-hidden="true"></span><span class="price" data-i18n="price">[Prix] €</span></div><span class="desc" data-i18n="desc">[Courte description]</span></div><div class="dish"><div class="dish-line"><span data-i18n="dish">[Nom du plat]</span><span class="dots" aria-hidden="true"></span><span class="price" data-i18n="price">[Prix] €</span></div><span class="desc" data-i18n="desc">[Courte description]</span></div><div class="dish"><div class="dish-line"><span data-i18n="dish">[Nom du plat]</span><span class="dots" aria-hidden="true"></span><span class="price" data-i18n="price">[Prix] €</span></div><span class="desc" data-i18n="desc">[Courte description]</span></div></div><div class="cat"><div class="cat-title"><h3 data-i18n="catDay">Plat du jour</h3></div><div class="dish"><div class="dish-line"><span data-i18n="dish">[Nom du plat]</span><span class="dots" aria-hidden="true"></span><span class="price" data-i18n="price">[Prix] €</span></div><span class="desc" data-i18n="desc">[Courte description]</span></div><div class="dish"><div class="dish-line"><span data-i18n="dish">[Nom du plat]</span><span class="dots" aria-hidden="true"></span><span class="price" data-i18n="price">[Prix] €</span></div><span class="desc" data-i18n="desc">[Courte description]</span></div></div><div class="cat"><div class="cat-title"><h3 data-i18n="catDessert">Desserts</h3></div><div class="dish"><div class="dish-line"><span data-i18n="dish">[Nom du plat]</span><span class="dots" aria-hidden="true"></span><span class="price" data-i18n="price">[Prix] €</span></div><span class="desc" data-i18n="desc">[Courte description]</span></div><div class="dish"><div class="dish-line"><span data-i18n="dish">[Nom du plat]</span><span class="dots" aria-hidden="true"></span><span class="price" data-i18n="price">[Prix] €</span></div><span class="desc" data-i18n="desc">[Courte description]</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="acces" class="band">
+    <div class="wrap">
+      <p class="eyebrow" data-i18n="findEyebrow">Nous trouver</p>
+      <h2 class="h2" data-i18n="findTitle" style="margin-top:16px">Au centre-ville, près de la gare</h2>
+      <div class="find">
+        <div class="map">
+          <svg class="streets" aria-hidden="true" viewBox="0 0 700 440" preserveAspectRatio="xMidYMid slice">
+            <g stroke="#2C6478" stroke-width="10" fill="none" stroke-linecap="round">
+              <path d="M-20 300 L720 180"/><path d="M120 -20 L260 460"/><path d="M420 -20 L470 460"/><path d="M-20 90 L720 40"/>
+            </g>
+            <g stroke="#173F50" stroke-width="4" fill="none">
+              <path d="M-20 380 L720 300"/><path d="M600 -20 L640 460"/><path d="M-20 200 L720 120"/>
+            </g>
+            <path d="M260 -20 L330 460" stroke="#D9B77E" stroke-width="4" stroke-dasharray="2 10" stroke-linecap="round" fill="none"/>
+          </svg>
+          <div class="pin">
+            <span class="pin-label">Marcel au Comptoir</span>
+            <svg aria-hidden="true" width="40" height="52" viewBox="0 0 40 52"><path d="M20 50 C20 50 4 31 4 19 a16 16 0 0 1 32 0 C36 31 20 50 20 50 Z" fill="#D9B77E" stroke="#14262E" stroke-width="2.5"/><circle cx="20" cy="19" r="6" fill="#14262E"/></svg>
+          </div>
+          <a class="directions" href="https://www.google.com/maps/search/?api=1&amp;query=17+Avenue+Notre+Dame+06000+Nice" target="_blank" rel="noopener"><span data-i18n="directions">Itinéraire</span>
+            <svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 12 L12 4 M6 4 H12 V10"/></svg></a>
+        </div>
+        <div class="info">
+          <div class="info-block">
+            <h3 data-i18n="addressLabel">Adresse</h3>
+            <p class="address">17 avenue Notre-Dame<br>06000 Nice</p>
+            <p class="tram" data-i18n="tram">Tram ligne 1, arrêt Gare Thiers</p>
+          </div>
+          <div class="info-block">
+            <h3 data-i18n="hoursLabel">Horaires</h3>
+            <ul class="hours">
+              <li><span data-i18n="d1">Lundi – vendredi</span><span data-i18n="h1">8h – 21h</span></li>
+              <li><span data-i18n="d2">Samedi</span><span data-i18n="h2">9h30 – 15h30</span></li>
+              <li><span data-i18n="d3">Dimanche</span><span data-i18n="h3">[À confirmer]</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span class="brand">Marcel <span>au Comptoir</span></span>
+    <small>17 avenue Notre-Dame, 06000 Nice · © 2026</small>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var EN = {
+    navAbout: 'About', navMenu: 'Menu', navFind: 'Find us',
+    aboutEyebrow: 'About us', aboutTitle: 'A Mediterranean bistro in the heart of Nice',
+    aboutP1: 'A short walk from the Notre-Dame basilica, Marcel au Comptoir serves Mediterranean bistro cooking: tapas to share, generous boards and a dish of the day.',
+    aboutP2: 'Fresh produce delivered every day, a friendly atmosphere, and a table for drinks, lunch or after-work with friends.',
+    f1t: 'The glass room', f1p: 'A bright room under a glass roof, facing the kitchen.',
+    f2t: 'The old olive tree', f2p: 'A table around our hundred-year-old olive tree.',
+    f3t: 'The terrace', f3p: 'Open almost all year round, thanks to the Nice sunshine.',
+    menuEyebrow: 'Menu', menuTitle: 'To share, or not', menuIntro: 'Fresh produce delivered daily: the menu changes with the market.',
+    catTapas: 'Tapas', catBoards: 'Sharing boards', catDay: 'Dish of the day', catDessert: 'Desserts',
+    dish: '[Dish name]', desc: '[Short description]', price: '€ [Price]',
+    findEyebrow: 'Find us', findTitle: 'Downtown, close to the station', directions: 'Directions',
+    addressLabel: 'Address', tram: 'Tram line 1, Gare Thiers stop', hoursLabel: 'Opening hours',
+    d1: 'Monday – Friday', h1: '8am – 9pm', d2: 'Saturday', h2: '9:30am – 3:30pm', d3: 'Sunday', h3: '[To confirm]',
+    altTerrace: 'The restaurant terrace', altRoom: 'The dining room with pendant lights and large street windows',
+    altTapas: 'Sharing plates', altBoard: 'Charcuterie and cheese board', altFish: 'Fish dish', altDessert: 'Strawberry panna cotta'
+  };
+  var FR = {};
+  document.querySelectorAll('[data-i18n]').forEach(function (el) { FR[el.dataset.i18n] = el.textContent; });
+  document.querySelectorAll('[data-i18n-alt]').forEach(function (el) { FR[el.dataset.i18nAlt] = el.alt; });
+  var btnFr = document.getElementById('lang-fr'), btnEn = document.getElementById('lang-en');
+  function setLang(lang) {
+    var dict = lang === 'en' ? EN : FR;
+    document.querySelectorAll('[data-i18n]').forEach(function (el) { var v = dict[el.dataset.i18n]; if (v != null) el.textContent = v; });
+    document.querySelectorAll('[data-i18n-alt]').forEach(function (el) { var v = dict[el.dataset.i18nAlt]; if (v != null) el.alt = v; });
+    document.documentElement.lang = lang;
+    btnFr.setAttribute('aria-pressed', String(lang === 'fr'));
+    btnEn.setAttribute('aria-pressed', String(lang === 'en'));
+    try { localStorage.setItem('marcel-lang', lang); } catch (e) {}
+  }
+  btnFr.addEventListener('click', function () { setLang('fr'); });
+  btnEn.addEventListener('click', function () { setLang('en'); });
+  var saved = null;
+  try { saved = localStorage.getItem('marcel-lang'); } catch (e) {}
+  setLang(saved === 'en' ? 'en' : 'fr');
+
+  // Underline the nav entry of the section currently on screen
+  var links = Array.prototype.slice.call(document.querySelectorAll('.nav-links a'));
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) {
+          links.forEach(function (a) { a.classList.toggle('active', a.getAttribute('href') === '#' + en.target.id); });
+        }
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    ['accueil', 'presentation', 'menu', 'acces'].forEach(function (id) { var s = document.getElementById(id); if (s) io.observe(s); });
+  }
+})();
+</script>
+
+</body>
+</html>
